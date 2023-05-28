@@ -1,0 +1,8 @@
+home page
+	location, genre, availabillity, customer ratings.
+Photographer Profile
+	photographer registration page
+	portfolio, bio, contact information, availability, pricing (customization)
+Booking page
+	date and time, location, additional information or special request
+Contact page

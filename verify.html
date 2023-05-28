@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify-Email</title>
+</head>
+
+<body>
+    <form action="login.html" id="verify-form">
+        <input type="email" name="email" id="email" placeholder="Enter Email"><br><br>
+        <input type="text" name="verify" id="verifyotp" placeholder="enter-otp"><br><br>
+        <input type="submit" id="submit">
+    </form>
+
+
+    <script>
+
+        const verify = document.querySelector('#submit');
+
+        const verifyUser = async (e) => {
+            e.preventDefault();
+            
+            let email = document.getElementById('email').value;
+            let otp = document.getElementById('verifyotp').value;
+            
+            document.getElementById('verify-form').reset();
+
+            let response = await fetch('http://localhost:8080/validate?email='+email+'&otp='+otp)
+            //let response = await fetch('http://localhost:8080/validate?email=gopiajt23@gmail.com&otp=0')
+            if(response.ok)
+            {
+                window.alert('Your Account has been verified Please Login')
+                window.open('login.html');
+            }
+            else{
+                window.alert('Invalid');
+            }
+            console.log(response);
+        };
+
+        verify.addEventListener('click',verifyUser);
+
+    </script>
+</body>
+
+</html>
