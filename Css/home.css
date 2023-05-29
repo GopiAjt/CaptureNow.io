@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Mono&family=Roboto+Slab:wght@500&display=swap');
+
+
+*{
+    margin: 0%;
+    /* padding: 0%; */
+    /* font-family: 'Open Sans', sans-serif; */
+    /* font-family: 'Roboto Mono', monospace; */
+    font-family: 'Roboto Slab' sans-serif;
+}
+
+.navbar{
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(255, 255, 0);
+    /* background-image: repeating-linear-gradient(rgba(255, 0, 0, 0.500),
+                    rgba(255, 166, 0, 0.400),
+                    rgba(255, 255, 0, 0.300),
+                    rgba(0, 128, 0, 0.200),
+                    rgba(0, 0, 255, 0.200),
+                    rgba(76, 0, 130, 0.200),
+                    rgba(238, 130, 238, 0.200)); */
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.237);
+    top: auto;
+    position: sticky;
+}
+.navbar .logo{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 12vw;
+    display: flex;
+}
+.navbar .logo a{
+    text-decoration: none;
+    color: black;
+}
+.navbar .buttons{
+    margin-right: 12vw;
+    display: flex;
+
+}
+
+.search {
+    display: flex;
+}
+
+.categories{
+    display: flex;
+    margin-top: 4vh;
+    height: 4vh;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 15vw;
+    margin-right: 15vw;
+}
+.categories a{
+    text-decoration: none;
+    color: black;
+    font-size: large;
+}
+.categories a:hover{
+    transition: 0.5s;
+    font-size: larger;
+}
+.banner{
+    display: flex;
+    justify-content: space-around;
+}
+
+.recommendations{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-left: 15vw;
+    margin-right: 15vw;
+}
+.recommendations .ele{
+    margin-bottom: 2vh;
+}
+.recommendations .ele:hover{
+    
+    transition: 1s;
+    box-shadow: 5px 10px 30px rgba(255, 255, 0, 0.751);
+}
+
+.footer{
+    background-color: rgb(255, 255, 0);
+    height: 50vh;
+}
+.footer .content{
+    padding-top: 10vh;
+    margin-left: 15vw;
+    margin-right: 15vw;
+}
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1rem;
+    }
+
+    .search input {
+        width: 100%;
+    }
+
+    .categories {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .categories button,
+    .categories a {
+        margin-bottom: 5px;
+    }
+
+    .recommendations {
+        justify-content: center;
+    }
+    .card {
+        width: 100%;
+    }
+}
+

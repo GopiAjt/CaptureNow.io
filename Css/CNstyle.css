@@ -11,7 +11,7 @@
 }
 .navbar
 {
-    background-color: rgba(102, 203, 206, 0.326);
+    background-color: rgb(255, 247, 0);
     height: 70px;
     display: flex;
     justify-content: space-between;

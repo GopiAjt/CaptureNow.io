@@ -1,8 +1,27 @@
 home page
 	location, genre, availabillity, customer ratings.
-Photographer Profile
+Photographer Profile and dashbord
 	photographer registration page
 	portfolio, bio, contact information, availability, pricing (customization)
 Booking page
 	date and time, location, additional information or special request
 Contact page
+
+
+customer profile page
+
+
+filters:
+	ratings
+	sort by:
+		popularity
+		rating: high to low
+		cost: Low to High, High to Low
+	Distance
+	type of photographer
+
+profile button:
+	view profile
+	my bookings
+	settings
+	logout
