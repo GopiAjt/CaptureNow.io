@@ -1,8 +1,8 @@
-const submit = document.querySelector('#submit');
+const login = document.querySelector('#signin');
 const loginUser = async(e) => {
     e.preventDefault();
-    let email = document.getElementById('email').value;
-    let pass = document.getElementById('password').value;
+    let email = document.getElementById('inputEmails').value;
+    let pass = document.getElementById('inputPassword').value;
 
     document.getElementById('signupForm').reset();
     //await fetch('http://localhost:8080/signin?email=gopiajt23@gmail.com&password=rish')
@@ -16,7 +16,7 @@ const loginUser = async(e) => {
     }
     else if(response.ok)
     {
-        window.open('/home.html');
+        window.open('verify.html');
     }
     else
     {
@@ -24,4 +24,4 @@ const loginUser = async(e) => {
     }
     console.log(response);
 };
-submit.addEventListener('click',loginUser,);
+login.addEventListener('click',loginUser,);

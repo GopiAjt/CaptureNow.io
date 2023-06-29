@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile Photo Form</title>
+  <style>
+    .preview-image {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin: 5px;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>Profile Photo Form</h1>
+  
+  <form id="profileForm" enctype="multipart/form-data">
+   <center><label for="profilePhoto" style="margin-left: 20px;">Profile Photo:</label></center> 
+    <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*(center)" onchange="previewImage(event)">
+    <br><br>
+    
+    <div id="previewContainer"></div>
+    
+  </form>
+  
+  <script>
+    function previewImage(event) {
+      const previewContainer = document.getElementById('previewContainer');
+      previewContainer.innerHTML = ''; // Clear previous preview
+      
+      const file = event.target.files[0];
+      const image = document.createElement('img');
+      image.classList.add('preview-image');
+      image.src = URL.createObjectURL(file);
+      
+      previewContainer.appendChild(image);
+    }
+  </script>
+</body>
+</html>

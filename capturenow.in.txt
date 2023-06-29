@@ -1,27 +1,86 @@
 home page
+	register as a photographer
 	location, genre, availabillity, customer ratings.
-Photographer Profile and dashbord
-	photographer registration page
-	portfolio, bio, contact information, availability, pricing (customization)
+	Featured Wedding Photographers
+	Featured Babies and Kids Photographers
+	Featured Special Occasion Photographers
+	Featured Food Photographers
+
+Photographers dashbord(editable)
+	about:
+		overview
+		service location
+		languages known
+		services
+		availability
+	albums
+	packages, pricing (customization)
+	Bookings(approve,reject)
+
+photographer registration page
+	profile-photo(Cover art must be: 1. must be of equal width and height(square)
+									 2. at least 3000*3000px at most 6000*6000px)
+	name
+	email
+	phone number
+	service location
+	languages known(separated by coma or space)
+	services(separated by coma or space)
+	expireance
+	about-me
+	password
+	re-enter your password
+
+
+Photographer Profile(profile photo with specialization and ratings)
+	about:
+		overview
+		service location
+		languages known
+		services or eqvipments
+		availability
+	albums:
+	packages with pricing (customization)
+	reviews 
+
 Booking page
-	date and time, location, additional information or special request
+	schedule from - till(date and time)* 
+	location*
+	additional information or special request
+	final pricing details
+
 Contact page
 
-
-customer profile page
-
+Customer profile
+	personal details
+	bookings
+	favrates
 
 filters:
-	ratings
 	sort by:
+		ratings
 		popularity
 		rating: high to low
 		cost: Low to High, High to Low
 	Distance
-	type of photographer
+	location
+	category photographer
 
 profile button:
-	view profile
-	my bookings
+	view profile -> customer profile page
+	my bookings	-> Booked page status(update, cancel)
 	settings
 	logout
+
+
+Wedding Photography.
+Event Photography.
+Portrait Photography.
+Fine Art Photography.
+Fashion Photography.
+Architectural Photography.
+Travel Photography.
+Lifestyle Photography.
+
+
+signup and signin validation
