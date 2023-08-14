@@ -5,23 +5,27 @@ const loginUser = async(e) => {
     let pass = document.getElementById('inputPassword').value;
 
     document.getElementById('signupForm').reset();
-    //await fetch('http://localhost:8080/signin?email=gopiajt23@gmail.com&password=rish')
-    let response = await fetch('http://localhost:8080/signin?email='+email+'&password='+pass);
+    let token = await fetch(`http://localhost:8080/customer/authtoken?email=${email}&password=${pass}`);
+    let response = await fetch('http://localhost:8080/customer/signin?email='+email+'&password='+pass);
      // .then(response => response.json())
       //.then(json => console.log(json));
 
+    console.log(response);
     if(response.status == 400)
     {
         window.alert('Please verify your account');
     }
     else if(response.ok)
     {
-        window.open('verify.html');
+        let data = await response.json();
+            // Store the data in localStorage
+        localStorage.setItem('user', JSON.stringify(data));
+
+        window.open('/home.html');
     }
     else
     {
         window.alert('Invalid Credentials');
     }
-    console.log(response);
 };
 login.addEventListener('click',loginUser,);

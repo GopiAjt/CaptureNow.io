@@ -17,6 +17,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8949c3f119.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -34,6 +36,12 @@
             <div class="search-box">
                 <label for="inputPre"><img src="/images/search.png" alt="" width="25vw"></label>&nbsp;
                 <input type="text" class="search-input" id="inputPre" placeholder="Search by prefarances">
+            </div>
+            <ul id="searchResults">
+                <!-- This will be dynamically populated with search results -->
+            </ul>
+            <div id="noResultsMessage" style="display: none;">
+                No results found.
             </div>
         </div>
         <div class="profile">
@@ -63,14 +71,16 @@
         <div class="profile-overview">
             <div class="profile-name" style="display: flex; justify-content: space-between;">
                 <h3>Name</h3>
-                <button id="fav-photo"><img src="photo-img/favorite-icon.png" alt="---" ></button>
+                <div class="btn">
+                    <button onclick="Toggle()" id="fav"><i class="fa-solid fa-heart"></i></button>
+                </div>
             </div>
-            <h6>Location</h6>
-            <h6>Phone number</h6>
-            <h6>Service Location</h6>
-            <h6>languages Known</h6>
-            <h6>Services</h6>
-            <p>We are India's leading wedding photography and filmmaking company.
+            <h6><i class="fa-solid fa-location-dot"></i> Location</h6>
+            <h6><i class="fa-solid fa-phone"></i> Phone number</h6>
+            <h6><i class="fa-solid fa-globe"></i> languages Known</h6>
+            <h6><img src="photo-img/serviceLogo.png" alt="" height="19px" width="19px">Services</h6>
+            <h6><img src="photo-img/experienceLogo.png" alt="" height="19px" width="19px"> Experience</h6>
+            <p><i class="fa-solid fa-photo-film"></i> We are India's leading wedding photography and filmmaking company.
                 Our award winning team documents stories of love from all around the world.
                 Featured in Indian and international publications like Wedisson Awards,
                 WeddingSutra and Better Photography.
@@ -78,10 +88,11 @@
         </div>
     </header>
 
-    <hr style="margin-left: 20vw; margin-right: 20vw; top: 0%; position: sticky;">
+    <hr style="margin-left: 20vw; margin-right: 20vw; top: 0%; position: sticky;margin-bottom: 0%;">
     <div class="profile-menu">
         <div class="albums">
-            <a href="profile-album.html" style="text-decoration: underline"><img src="photo-img/album-icon.png" alt="" class="icon">ALBUM</a>
+            <a href="profile-album.html" style="background-color: yellow;"><img src="photo-img/album-icon.png" alt=""
+                    class="icon">ALBUM</a>
         </div>
         <div class="packages">
             <a href="packages.html"><img src="photo-img/package-icon.png" alt="" class="icon">PAKAGES</a>
@@ -152,6 +163,32 @@
             </div>
         </div>
     </div>
+    <script src="equipment.js"></script>
+    <script src="search.js"></script>
+    <script>
+        // photographer/profile-album.js
+
+        // Retrieve the photographer's ID from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const photographerId = urlParams.get('id');
+        console.log(photographerId);
+        // Use the photographerId to fetch the specific photographer's data and populate the profile page
+        fetch(`http://localhost:8080/customer/getPhotographer?id=${photographerId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => response.json())
+            .then(photographerData => {
+                // Populate the profile page with the fetched photographerData
+            })
+            .catch(error => {
+                console.error('Error fetching photographer data:', error);
+            });
+
+    </script>
 </body>
 
 </html>

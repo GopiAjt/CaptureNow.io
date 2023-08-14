@@ -41,16 +41,16 @@
             <div class="btn-group dropend">
                 <a class="dropdown-toggle" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false"
                     style="text-decoration: none; color: black;">
-                    <img src="images/mm.jpg" alt="" width="45vw" height="45vh" style="border-radius: 100%;">
+                    <img src="images/mm.jpg" alt="" width="45vw" height="45vh" style="border-radius: 100%; cursor: pointer;">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                    <li><a class="dropdown-item" href="user-profile/user-profile.html">Profile</a></li>
+                    <li><a class="dropdown-item" href="user-profile/user-profile.html"><img src="images/person.png" alt="" class="icon"> Profile</a></li>
                     <li><a class="dropdown-item" href="#">Bookings</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" onclick="logOut()" href="loginPage.html"><img src="images/logout.png" alt="" class="icon"> Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -146,158 +146,8 @@
     <h5 style="margin-left: 16.5vw;">You Might Like</h5><br>
     <div class="recommendations">
         <!-- cards -->
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <div class="card-img">
-                        <a href="photographer/profile-album.html"><img src="/images/mm.jpg" class="card-img-top" alt="..."></a>
-                    </div>
-                    <div class="card-info">
-                       <div class="card-name"><h4>name</h4></div>
-                       <div class="card-location">location</div>
-                       <div class="card-services">services</div>
-                       <div class="card-fotter">
-                            <div class="price-range">100000</div>
-                            <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#BookModal">Book Me</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <a href="photographer/profile-album.html"><img src="/images/mm.jpg" class="card-img-top" alt="..."></a>
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="ele">
-            <div class="card" style="width: 18rem;">
-                <img src="/images/mm.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">photografer</h5>
-                    <p class="card-text">I am a photografer</p>
-                    <button type="button" id="book" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#BookModal">Book Me</button>
-                </div>
-            </div>
-        </div>
     </div>
+    
     <!-- Book me modal -->
     <div class="modal fade" id="BookModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -392,8 +242,13 @@
             owners. All images are protected by Copyright Act and licensed to respective owners of the images,
             copying and sharing without necessary consent and permission is strictly prohibited.</p>
     </footer>
-    <script src="js/login.js"></script>
-    <script async src="js/signupscrip.js"></script>
+    <script src="js/home.js"></script>
+    <script>
+        function logOut() {
+            localStorage.removeItem('user');
+            localStorage.clear();
+        }
+    </script>
 </body>
 
 </html>

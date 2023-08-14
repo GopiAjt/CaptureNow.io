@@ -14,8 +14,6 @@
         <input type="text" name="verify" id="verifyotp" placeholder="enter-otp"><br><br>
         <input type="submit" id="submit">
     </form>
-
-
     <script>
 
         const verify = document.querySelector('#submit');
@@ -28,12 +26,12 @@
             
             document.getElementById('verify-form').reset();
 
-            let response = await fetch('http://localhost:8080/validate?email='+email+'&otp='+otp)
+            let response = await fetch('http://localhost:8080/customer/validate?email='+email+'&otp='+otp)
             //let response = await fetch('http://localhost:8080/validate?email=gopiajt23@gmail.com&otp=0')
             if(response.ok)
             {
                 window.alert('Your Account has been verified Please Login')
-                window.open('login.html');
+                window.open('loginPage.html');
             }
             else{
                 window.alert('Invalid');

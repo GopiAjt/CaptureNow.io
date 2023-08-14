@@ -17,40 +17,43 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+        <link rel="icon" type="image/png" href="/images/log.png">
 </head>
 
 <body>
+    <div id="loading-indicator"></div>
     <div id="navbar">
         <div class="logo">
-            <a href="index.html">
-                <img src="/images/CaptureNow-logo.png" alt="" width="200vw">
+            <span><img src="/images/log.png" width="50vw" alt="" srcset=""></span>
+            <a href="/home.html" style="display: flex; justify-content: center; align-items: center;">
+                <span
+                    style="color: rgb(255, 255, 255); font-size: x-large; font-weight: bolder; text-shadow: 1px 1px black;">Capture</span>
+                <span style="color: black; font-size: x-large; ">Now.in</span>
             </a>
         </div>
-        <div class="search">
-            <div class="search-box-loc">
-                <label for="inputLoc"><img src="/images/location.png" alt="" width="25vw"></label>&nbsp;
-                <input type="text" class="search-input" id="inputLoc" placeholder="Search by location">
-            </div>
-            <div class="search-box">
-                <label for="inputPre"><img src="/images/search.png" alt="" width="25vw"></label>&nbsp;
-                <input type="text" class="search-input" id="inputPre" placeholder="Search by prefarances">
-            </div>
-        </div>
+
         <div class="profile">
             <div class="btn-group dropend">
                 <a class="dropdown-toggle" id="dropdownMenu" data-bs-toggle="dropdown" aria-expanded="false"
-                    style="text-decoration: none; color: black;">
-                    <img src="images/mm.jpg" alt="profile" width="45vw" height="45vh" style="border-radius: 100%;">
+                    style="text-decoration: none; color: black; cursor: pointer;">
+                    <img src="" id="nav-img" alt="profile" width="45vw" height="45vh" style="border-radius: 100%;">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                    <li><a class="dropdown-item" href="profile-album.html">Profile</a></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addAlbum">Add Album</a></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#package">Add Package</a></li>
-                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addEquipments">Add Equipments</a></li>
+                    <li><a class="dropdown-item" href="profile-album.html">
+                            <img src="photo-img/person.png" alt="" class="icon"> Profile</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addAlbum">
+                            <img src="photo-img/album-icon.png" alt="" class="icon"> Add Album</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#package">
+                            <img src="photo-img/package-icon.png" alt="" class="icon"> Add Package</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addEquipments">
+                            <img src="photo-img/equpment-icon.png" alt="" class="icon"> Add Equipments</a></li>
+                    <li><a class="dropdown-item" href="settings.html">
+                            <img src="photo-img/settings.png" alt="" class="icon"> Dashboard</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="login.html" onclick="logOut()"><img src="photo-img/logout.png"
+                                alt="" class="icon"> Logout</a></li>
                 </ul>
             </div>
             <!-- add album modal -->
@@ -64,7 +67,7 @@
                         <div class="modal-body">
                             <form id="galleryForm" enctype="multipart/form-data">
                                 <label for="category" class="form-label">Category:</label>
-                                <select id="category" class="form-control"  name="category">
+                                <select id="category" class="form-control" name="category">
                                     <option value="landscape">Landscape</option>
                                     <option value="portrait">Portrait</option>
                                     <option value="abstract">Abstract</option>
@@ -72,12 +75,12 @@
                                 <br><br>
 
                                 <label for="images" class="form-label">Select Images:</label>
-                                <input type="file" id="images"  class="form-control"  name="images[]" multiple accept="image/*"
-                                    onchange="previewImages(event)">
+                                <input type="file" id="images" class="form-control" name="images[]" multiple
+                                    accept="image/*" onchange="previewImages(event)">
                                 <br><br>
 
                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                    <input type="submit" class="btn btn-outline-dark"value="Save">
+                                    <input type="submit" class="btn btn-outline-dark" value="Save">
                                 </div>
                             </form>
                         </div>
@@ -101,11 +104,11 @@
                                 <div id="package-type">
                                     <div class="mb-3">
                                         <label for="package-name" class="form-label">Package Name</label>
-                                        <input type="password" class="form-control" id="package-name">
+                                        <input type="text" class="form-control" id="package-name">
                                     </div>
                                     <div class="pcategory">
                                         <label for="exampleDataList" class="form-label">Select a Category</label>
-                                        <input class="form-control" list="datalistOptions" id="exampleDataList"
+                                        <input class="form-control" list="datalistOptions" id="packageCategory"
                                             placeholder="Type to search...">
                                         <datalist id="datalistOptions">
                                             <option value="Wedding">
@@ -120,30 +123,37 @@
                                 <div id="rates">
                                     <div class="mb-3">
                                         <label for="Event-rate" class="form-label">Event Rate</label>
-                                        <input type="number" class="form-control" name="Event-rate" placeholder="$"
-                                            aria-label="Amount (to the nearest dollar)">
+                                        <input type="number" class="form-control" name="Event-rate" id="eventrate"
+                                            placeholder="$" aria-label="Amount (to the nearest dollar)">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Day-rate" class="form-label">One Day Rate</label>
-                                        <input type="number" class="form-control" name="Day-rate" placeholder="$"
-                                            aria-label="Amount (to the nearest dollar)">
+                                        <input type="number" class="form-control" name="Day-rate" id="Day-rate"
+                                            placeholder="$" aria-label="Amount (to the nearest dollar)">
                                     </div>
                                     <div class="mb-3">
                                         <label for="Hour-rate" class="form-label">One Hour Rate</label>
-                                        <input type="number" class="form-control" name="Hour-rate" placeholder="$"
-                                            aria-label="Amount (to the nearest dollar)">
+                                        <input type="number" class="form-control" name="Hour-rate" id="Hour-rate"
+                                            placeholder="$" aria-label="Amount (to the nearest dollar)">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="video-rate" class="form-label">Videography Rate</label>
+                                        <input type="number" class="form-control" name="video-rate" id="video-rate"
+                                            placeholder="$" aria-label="Amount (to the nearest dollar)">
                                     </div>
                                 </div>
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a comment here"
                                         id="floatingTextarea2" style="height: 100px"></textarea>
-                                    <label for="floatingTextarea2">Describe what are the services that you are going to provide in this package</label>
+                                    <label for="floatingTextarea2">Describe what are the services that you are going to
+                                        provide in this package</label>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <div class="d-grid gap-2 col-6 mx-auto">
-                                <button class="btn btn-outline-dark" type="button">Add</button>
+                                <input type="submit" class="btn btn-outline-dark" placeholder="Add" id="add-package">
+                                <!-- <button  type="button"  onclick="addPackage()">Add</button> -->
                             </div>
                         </div>
                     </div>
@@ -155,19 +165,19 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: yellow;">
-                            <h5 class="modal-title" id="addEquipments">Add Album</h5>
+                            <h5 class="modal-title" id="addEquipments">Add Equipments</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form id="equipmentForm" enctype="multipart/form-data">
 
                                 <label for="images" class="form-label">Select Images:</label>
-                                <input type="file" id="imagesEquip" class="form-control"name="images[]" multiple accept="image/*"
-                                    onchange="previewEquipment(event)">
+                                <input type="file" id="imagesEquip" class="form-control" name="images[]" multiple
+                                    accept="image/*" onchange="previewEquipment(event)">
                                 <br><br>
 
                                 <div class="d-grid gap-2 col-6 mx-auto">
-                                    <input type="submit" class="btn btn-outline-dark"value="Save">
+                                    <input type="submit" class="btn btn-outline-dark" value="Save">
                                 </div>
                             </form>
                         </div>
@@ -187,19 +197,37 @@
             <img id="profileImage" src="" alt="profile-image">
         </div>
         <div class="profile-overview">
-            <div class="profile-name" style="display: flex; justify-content: space-between;">
-                <h3 id="name"></h3>
+            <div class="profile-name" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <h3 id="name" style="margin: 0px; margin-bottom: 10px;"></h3>
             </div>
-            <h6 id="location"></h6>
-            <h6 id="phoneNumber"></h6>
-            <h6 id="serviceLocation"></h6>
-            <h6 id="languagesKnown"></h6>
-            <h6 id="services"></h6>
-            <p id="description"></p>
+            <div class="prof-ele">
+                <img src="photo-img/phone.png" width="25vw" height="25vh" alt="">
+                <h6 id="phoneNumber" style="margin: 0px; margin-left: 10px;"></h6>
+            </div>
+            <div class="prof-ele">
+                <img src="photo-img/location.png" width="25vw" height="25vh" alt="">
+                <h6 id="serviceLocation" style="margin: 0px; margin-left: 10px;"></h6>
+            </div>
+            <div class="prof-ele">
+                <img src="photo-img/languages.png" width="25vw" height="25vh" alt="" srcset="">
+                <h6 id="languagesKnown" style="margin: 0px; margin-left: 10px;"></h6>
+            </div>
+            <div class="prof-ele">
+                <img src="photo-img/serviceLogo.png" width="25vw" height="25vh" alt="">
+                <h6 id="services" style="margin: 0px; margin-left: 10px;"></h6>
+            </div>
+            <div class="prof-ele">
+                <img src="photo-img/experienceLogo.png" width="23vw" height="23vh" alt="">
+                <h6 id="experience" style="margin: 0px; margin-left: 10px;"></h6>
+            </div>
+            <div class="prof-ele">
+                <img src="photo-img/info.png" width="25vw" height="25vh" alt="">
+                <h6 id="description"></h6>
+            </div>
         </div>
     </header>
     <!-- profile meanu -->
-    <hr style="margin-left: 20vw; margin-right: 20vw; top: 0%; position: sticky;">
+    <hr id="hr-line">
     <div class="profile-menu">
         <div class="albums">
             <a href="profile-album.html"><img src="photo-img/album-icon.png" alt="" class="icon">ALBUM</a>
@@ -208,47 +236,26 @@
             <a href="packages.html"><img src="photo-img/package-icon.png" alt="" class="icon">PAKAGES</a>
         </div>
         <div class="equipments">
-            <a href="equipment.html" style="text-decoration: underline"><img src="photo-img/equpment-icon.png" alt="" class="icon">EQUIPMENTS</a>
+            <a href="equipment.html" id="equipmentLink" style="background-color: yellow;"><img
+                    src="photo-img/equpment-icon.png" alt="" class="icon">EQUIPMENTS</a>
+        </div>
+        <div class="reviews">
+            <a href="Reviews.html"><img src="photo-img/reviews.png" alt="" class="icon">REVIEWS</a>
         </div>
     </div>
 
     <div class="album-container">
-        <div class="album-hedder" style="display: flex; justify-content: space-between; width: 40vw;">
-            <div class="album-name">Wedding</div>
-            <div class="album-button"><button>Delete</button></div>
-        </div>
-        <div class="profile-album">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/images/mm.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>categori</h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/mm.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/images/mm.jpg" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
+        <h5>No Data To Display</h5>
     </div>
 
+    <div id="imageModal" class="img-modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
 
     <script src="profilegrapher.js"></script>
+    <script src="addPackage.js"></script>
+    <script src="loadEquipments.js"></script>
 </body>
 
 </html>

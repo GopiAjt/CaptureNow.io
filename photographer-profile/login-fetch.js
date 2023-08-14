@@ -5,8 +5,8 @@ const loginUser = async (e) => {
     let password = document.getElementById('inputPassword').value;
     let data = JSON.parse(localStorage.getItem('data'));
     document.getElementById('signupForm').reset();
-    let token = await fetch(`http://localhost:8080/photographer/authtoken?name=${data.name}&password=${password}`);
-                console.log(token);
+    let token = await fetch(`http://localhost:8080/photographer/authtoken?email=${email}&password=${password}`);
+    console.log(token);
     try {
         
         let response = await fetch(`http://localhost:8080/photographer/signin?email=${email}&password=${password}`);

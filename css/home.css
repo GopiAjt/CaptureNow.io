@@ -17,7 +17,9 @@
   height: 8vh;
   width: auto;
 }
-
+.icon {
+  width: 1.5vw;
+}
 #navbar .logo {
   display: flex;
 }
@@ -65,14 +67,17 @@
 
 .recommendations {
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
   margin-left: 15vw;
   margin-right: 15vw;
+  flex-direction: column;
+  align-items: center;
 }
 
 .recommendations .ele {
   margin-bottom: 2vh;
+  width: 900px;
+  height: auto;
 }
 
 .search-box-loc{

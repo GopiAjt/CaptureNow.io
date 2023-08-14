@@ -3,135 +3,158 @@ let data = JSON.parse(localStorage.getItem('data'));
 
 
 function previewImages(event) {
-    const previewContainer = document.getElementById('previewContainer');
-    previewContainer.innerHTML = ''; // Clear previous previews
+  const previewContainer = document.getElementById('previewContainer');
+  previewContainer.innerHTML = ''; // Clear previous previews
 
-    const files = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const image = document.createElement('img');
-        image.classList.add('preview-image');
-        image.src = URL.createObjectURL(file);
+  const files = event.target.files;
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const image = document.createElement('img');
+    image.classList.add('preview-image');
+    image.src = URL.createObjectURL(file);
 
-        previewContainer.appendChild(image);
-    }
+    previewContainer.appendChild(image);
+  }
 }
 
 function previewEquipment(event) {
-    const previewContainer = document.getElementById('previewEquipContainer');
-    previewContainer.innerHTML = ''; // Clear previous previews
+  const previewContainer = document.getElementById('previewEquipContainer');
+  previewContainer.innerHTML = ''; // Clear previous previews
 
-    const files = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const image = document.createElement('img');
-        image.classList.add('preview-image');
-        image.src = URL.createObjectURL(file);
+  const files = event.target.files;
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const image = document.createElement('img');
+    image.classList.add('preview-image');
+    image.src = URL.createObjectURL(file);
 
-        previewContainer.appendChild(image);
-    }
+    previewContainer.appendChild(image);
+  }
 }
 
 const form = document.getElementById('galleryForm');
-form.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form submission
+form.addEventListener('submit', async function (event) {
+  event.preventDefault(); // Prevent form submission
 
-    // Retrieve selected category
-    const category = document.getElementById('category').value;
+  const category = document.getElementById('category').value;
+  const imageFiles = document.getElementById('images').files;
+  const photographerName = data.name;
+  const token = data.authToken;
 
-    // Retrieve selected images
-    const imageFiles = document.getElementById('images').files;
-    const image = [];
+  const formData = new FormData(form);
+  formData.set('category', category);
+  formData.set('photographerName', photographerName);
 
-    // Add each selected image file to the array
-    for (var i = 0; i < imageFiles.length; i++) {
-      image.push(imageFiles[i]);
+  for (let i = 0; i < imageFiles.length; i++) {
+    formData.append('file', imageFiles[i]);
+  }
+
+  try {
+    const response = await fetch('http://localhost:8080/photographer/add', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      body: formData
+    });
+
+    if (response.ok) {
+      console.log('Gallery submitted successfully');
+      window.alert('Album Added successfully');
+      loadAlbum();
+      let albumData = await response.json();
+      data.Albums = albumData;
+      // localStorage.setItem('data', JSON.stringify(data));
+      console.log(albumData);
+    } else {
+      console.error('Error:', response.status);
     }
-    const photographerName = data.name;
+  } catch (error) {
+    console.error('Error:', error);
+  }
 
-    const token = data.authToken;
-    console.log(token);
-    // Perform validation, if necessary
-
-    // Send the form data to the server using AJAX
-    fetch('http://localhost:8080/photographer/add', {
-        method: 'POST',
-        headers:{
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-            file: image,
-            category: category,
-            photographerName: photographerName
-        }),
-        // mode: 'no-cors'
-    })
-        .then(response => {
-            // Handle the response from the server
-            if (response.ok) {
-                // Gallery submitted successfully
-                console.log('Gallery submitted successfully');
-            } else {
-                // Error occurred
-                console.error('Error:', response.status);
-            }
-        })
-        .catch(error => {
-            // Handle any errors that occurred during the AJAX call
-            console.error('Error:', error);
-        });
-
-    // Here, we're just logging the data for demonstration purposes
-    console.log('Category:', category);
-    console.log('Images:', images);
-
-    // Reset the form
-    form.reset();
-    document.getElementById('previewContainer').innerHTML = '';
+  form.reset();
+  document.getElementById('previewContainer').innerHTML = '';
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Get the element by ID
-    const formEquip = document.getElementById('equipmentForm');
+  // Get the element by ID
+  const formEquip = document.getElementById('equipmentForm');
 
-    // Check if the element exists
-    if (formEquip) {
-        // Add an event listener to the element
-        formEquip.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission
+  // Check if the element exists
+  if (formEquip) {
+    // Add an event listener to the element
+    formEquip.addEventListener('submit', async function (event) {
+      event.preventDefault(); // Prevent form submission
 
-            // Retrieve selected category
-            // const category = document.getElementById('category').value;
+      // Retrieve selected category
+      // const category = document.getElementById('category').value;
 
-            // Retrieve selected images
-            const images = document.getElementById('imagesEquip').files;
+      // Retrieve selected images
+      const imageFiles = document.getElementById('imagesEquip').files;
+      const photographerName = data.name;
+      const token = data.authToken;
 
-            // Perform validation, if necessary
+      const formData = new FormData(form);
+      formData.set('category', 'equipment');
+      formData.set('photographerName', photographerName);
 
-            // Send form data to the server using AJAX or any other method
-            // Here, we're just logging the data for demonstration purposes
-            // console.log('Category:', category);
-            console.log('Images:', images);
+      for (let i = 0; i < imageFiles.length; i++) {
+        formData.append('file', imageFiles[i]);
+      }
 
-            // Reset the form
-            form.reset();
-            document.getElementById('previewContainer').innerHTML = '';
+      try {
+        const response = await fetch('http://localhost:8080/photographer/add', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`
+          },
+          body: formData
         });
-    }
+        if (response.ok) {
+          console.log('Gallery submitted successfully');
+          window.alert('Equipments Added successfully');
+          loadEquipments()
+        } else {
+          console.error('Error:', response.status);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+      // Perform validation, if necessary
+      // Reset the form
+      form.reset();
+      document.getElementById('previewContainer').innerHTML = '';
+    });
+  }
 });
 
 
 const populateProfileData = (data) => {
-    // document.getElementById('profileImage').src = data.profilePhoto;
-    document.getElementById('name').textContent = data.name;
-    document.getElementById('location').textContent = data.location;
-    document.getElementById('phoneNumber').textContent = data.phoneNumber;
-    document.getElementById('serviceLocation').textContent = data.serviceLocation;
-    document.getElementById('languagesKnown').textContent = data.languages;
-    document.getElementById('services').textContent = data.services;
-    document.getElementById('description').textContent = data.aboutMe;
+  // document.getElementById('profileImage').src = data.profilePhoto;
+  document.getElementById('name').textContent = data.name;
+  document.getElementById('phoneNumber').textContent = data.phoneNumber;
+  document.getElementById('serviceLocation').textContent = data.serviceLocation;
+  document.getElementById('languagesKnown').textContent = data.languages;
+  document.getElementById('services').textContent = data.services;
+  document.getElementById('description').textContent = data.aboutMe;
+  document.getElementById('experience').textContent = data.experience + ' Years';
+  let img = document.getElementById('profileImage');
+  let navImg = document.getElementById('nav-img');
+
+  document.title = data.name;
+
+  if(data.profilePhoto == null)
+  {
+    img.src = '/images/profile.jpg';
+    navImg.src = '/images/profile.jpg';
+  }
+  else
+  {
+    img.src = 'data:image/jpeg;base64,' +  data.profilePhoto;
+    navImg.src = 'data:image/jpeg;base64,' +  data.profilePhoto;
+  }
 };
 // Now you can use the data variable here
 console.log(data);

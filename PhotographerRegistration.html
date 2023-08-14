@@ -144,10 +144,10 @@
 
             let response = await fetch('http://localhost:8080/photographer/validate?email=' + email + '&otp=' + otp)
             //let response = await fetch('http://localhost:8080/validate?email=gopiajt23@gmail.com&otp=0')
-            
+
             if (response.ok) {
                 window.alert('Your Account has been verified Please Login');
-                
+
                 window.location.href = '/photographer-profile/login.html';
             }
             else {

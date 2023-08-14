@@ -64,7 +64,6 @@
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   border-left: 1px solid black;
-
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-top-left-radius: none;
@@ -145,6 +144,11 @@
   color: black;
   display: flex;
   align-items: center;
+  padding: 5px 17px;
+  font-weight: bold;
+  border-radius:7px;
+  transition-delay: 0.3s;
+  opacity: 0.7;
 }
 
 .packages a {
@@ -152,6 +156,11 @@
   color: black;
   display: flex;
   align-items: center;
+  font-weight: bold;
+  padding: 5px 17px;
+  border-radius:7px;
+  transition-delay: 0.3s;
+  opacity: 0.7;
 }
 
 .equipments a {
@@ -159,12 +168,33 @@
   color: black;
   display: flex;
   align-items: center;
+  font-weight: bold;
+  padding: 5px 17px;
+  border-radius:7px;
+  transition-delay: 0.3;
+  opacity: 0.7;
 }
 
-#fav-photo{
+.albums a:hover{
+  opacity: 0.9;
+  /* background-color:rgb(215, 215, 83); */
+}
+
+.packages a:hover{
+  opacity: 0.9;
+  /* background-color:rgb(215, 215, 83); */
+}
+
+.equipments a:hover{
+  opacity: 0.9;
+   /* background-color:rgb(215, 215, 83); */
+}
+
+#fav{
   background: none;
   border: none;
   border-style: none;
+  font-size: 2em;
 }
 
 .icon{
@@ -192,3 +222,67 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media(max-width:600px){
+  .logo a {
+    display: none;
+  }
+  .profile-header {
+    margin-top: 10vh;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.071);
+    display: flex;
+    align-items: center;
+    margin-bottom: 5vh;
+    border-radius: 10px;
+    flex-direction: column;
+    margin: 0%;
+  }
+  .search-input{
+    /* display: none; */
+    font-display: unset;
+  }
+  hr{
+    top: 0%; 
+    position: sticky;
+  }
+  .icon{
+    width: 5vw;
+  }
+  .albums a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+  .packages a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  } 
+  .profile-album {
+    /* margin-left: 20vw;
+    margin-right: 20vw; */
+    height: 30vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10%;
+  }
+  #navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 0);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.237);
+    height: 8vh;
+    width: auto;
+  }
+}
+
+
