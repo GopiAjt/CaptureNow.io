@@ -38,13 +38,23 @@ function fetchPhotographers() {
                 cardImgDiv.classList.add('card-img');
 
                 var img = document.createElement('img');
-                img.src = 'data:image/jpeg;base64,'+ photographer.profilePhoto;
+                img.src = 'data:image/jpeg;base64,' + photographer.profilePhoto;
                 img.classList.add('card-img-top');
                 img.alt = '...';
 
+                // ...
+
                 var aTag = document.createElement('a');
-                aTag.href = `photographer/profile-album.html?id=${photographer.email}`;
+                aTag.href = `photographer/profile-album.html`;
+                aTag.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevents the default behavior of the anchor tag (i.e., navigating to the href)
+                    console.log(photographer.email);
+                    fetchPhotographerByEmail(photographer.email);
+                });
                 aTag.appendChild(img);
+
+                // ...
+
 
                 cardImgDiv.appendChild(aTag);
 
@@ -81,13 +91,13 @@ function fetchPhotographers() {
                 cardLanguagesDiv.classList.add('card-language');
                 cardLanguagesDiv.textContent = photographer.languages;
                 cardInfoDiv.appendChild(cardLanguagesDiv);
-                
+
                 var cardFooterDiv = document.createElement('div');
                 cardFooterDiv.classList.add('card-fotter');
 
                 var priceRangeDiv = document.createElement('div');
                 priceRangeDiv.classList.add('price-range');
-                priceRangeDiv.textContent = 'starts with: '+1000;
+                priceRangeDiv.textContent = 'starts with: ' + 1000;
                 cardFooterDiv.appendChild(priceRangeDiv);
 
                 var button = document.createElement('button');
@@ -108,8 +118,32 @@ function fetchPhotographers() {
                 // Append the dynamically generated card to the container (e.g., <div class="recommendations">)
                 document.querySelector('.recommendations').appendChild(eleDiv);
             }
-})
-        .catch (error => {
-    console.error('Error fetching photographers:', error);
-});
+        })
+        .catch(error => {
+            console.error('Error fetching photographers:', error);
+        });
 };
+
+function fetchPhotographerByEmail(email) {
+    fetch(`http://localhost:8080/customer/getPhotographerByEmail?email=${email}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => {
+        console.log('Raw response:', response);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        // return response.json();
+    })
+    .then(data => {
+        console.log(data.json());
+        alert(`Photographer Name: ${data.name}`);
+    })
+    .catch(error => {
+        console.error('Error fetching photographer by email:', error);
+    });
+}
