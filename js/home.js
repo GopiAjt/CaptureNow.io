@@ -1,7 +1,6 @@
 let user = JSON.parse(localStorage.getItem('user'));
 console.log(user);
 
-// script.js
 let token = user.authToken;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,19 +41,15 @@ function fetchPhotographers() {
                 img.classList.add('card-img-top');
                 img.alt = '...';
 
-                // ...
 
                 var aTag = document.createElement('a');
-                aTag.href = `photographer/profile-album.html`;
+                aTag.style.cursor = "pointer";
                 aTag.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevents the default behavior of the anchor tag (i.e., navigating to the href)
-                    console.log(photographer.email);
-                    fetchPhotographerByEmail(photographer.email);
+                    event.preventDefault();
+                    getByEmail(photographer.mailId);
                 });
+
                 aTag.appendChild(img);
-
-                // ...
-
 
                 cardImgDiv.appendChild(aTag);
 
@@ -64,14 +59,25 @@ function fetchPhotographers() {
                 var cardNameDiv = document.createElement('div');
                 cardNameDiv.classList.add('card-name');
 
+                // anchor tag
                 var tag = document.createElement('a');
                 tag.href = 'photographer/profile-album.html';
                 var h4Tag = document.createElement('h4');
                 h4Tag.textContent = photographer.name;
 
-                cardNameDiv.appendChild(h4Tag);
+                tag.style.textDecoration = "none";
+                tag.style.color = "black";
+                h4Tag.style.fontWeight = "bolder";
+
+                tag.appendChild(h4Tag);
+                cardNameDiv.appendChild(tag);
                 cardInfoDiv.appendChild(cardNameDiv);
 
+                tag.addEventListener('click', function (event){
+                    event.preventDefault();
+                    getByEmail(photographer.mailId);
+                });
+                
                 let cardExpireanceDiv = document.createElement('div');
                 cardExpireanceDiv.classList.add('card-experievce');
                 cardExpireanceDiv.textContent = photographer.experience;
@@ -124,26 +130,27 @@ function fetchPhotographers() {
         });
 };
 
-function fetchPhotographerByEmail(email) {
-    fetch(`http://localhost:8080/customer/getPhotographerByEmail?email=${email}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-    })
-    .then(response => {
-        console.log('Raw response:', response);
+async function getByEmail(email) {
+    try {
+        let response = await fetch(`http://localhost:8080/customer/getPhotographerByEmail?email=${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        // return response.json();
-    })
-    .then(data => {
-        console.log(data.json());
-        alert(`Photographer Name: ${data.name}`);
-    })
-    .catch(error => {
-        console.error('Error fetching photographer by email:', error);
-    });
+        console.log(response);
+        let data = await response.json();
+        console.log('photographer:', data);
+
+        localStorage.setItem('photographerData', JSON.stringify(data));
+
+        window.location.href = 'photographer/profile-album.html';
+    } catch (error) {
+        console.error('There was an error:', error);
+    }
 }
