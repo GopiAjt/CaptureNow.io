@@ -1,7 +1,7 @@
 const searchData = [
     'Portraits','Wedding Photography','Documentary','Sports','Fashion','Commercial','Street Photography','Event Photography',
     'Travel','Pet Photography','Product Photography','Real Estate','Food','Still Life Photography','Architecture','Abstract Photography','Landscape',
-    'Wildlife','Macro','Underwater','Astrophotography','Aerial Photography','Scientific'
+    'Wildlife','Macro','Underwater','Astrophotography','Aerial Photography','Scientific','birthday','dethday','events'
 ];
 // Get references to the search input, results container, and no results message
 const searchInput = document.getElementById('inputPre');

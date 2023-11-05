@@ -30,8 +30,8 @@ const saveUser = async(e) => {
     let email = document.getElementById('inputEmail').value;
     emailGlobal = email;
     let pass = document.getElementById('inputPassword1').value;
-    let phno = document.getElementById('inputphone').value;
-    document.getElementById('signup-form').reset();
+    // let phno = document.getElementById('inputphone').value;
+    // document.getElementById('signup-form').reset();
     // $('exampleModal').modal('toggle');
     // $('verifyModal').modal('toggle');
     let options = {
@@ -42,8 +42,7 @@ const saveUser = async(e) => {
         body: JSON.stringify({
             name: name,
             email: email,
-            password: pass,
-            phno: phno
+            password: pass
         })
     };
     let response = await fetch('http://localhost:8080/customer/signup',options);

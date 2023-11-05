@@ -33,7 +33,7 @@ const add = async (e) => {
             'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(p)
-    })
+    });
     console.log(response);
     let packageData = await response.json();
     console.log('pacakge Data: ', packageData);

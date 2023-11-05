@@ -1,10 +1,11 @@
 // Function to handle form submission
-const submitForm = async(event) => {
+const submitForm = async (event) => {
     event.preventDefault(); // Prevent form from submitting and page refreshing
 
     // Fetch form values
     const name = document.getElementById('first_name').value;
     const email = document.getElementById('email').value;
+    console.log(email);
     const phoneNumber = document.getElementById('phone_number').value;
     const serviceLocation = document.getElementById('service_location').value;
     const languagesKnown = document.getElementById('languages_known').value;
@@ -24,7 +25,7 @@ const submitForm = async(event) => {
     let response = await fetch('http://localhost:8080/photographer/signup', {
         method: "POST",
         headers: {
-            "Content-type": "application/json"
+            "Content-Type": "application/json", // Corrected capitalization
         },
         body: JSON.stringify({
             name: name,
@@ -39,12 +40,11 @@ const submitForm = async(event) => {
         })
     })
     console.log(response);
-    if(response.status == 201)
-    {
+    if (response.status == 201) {
         // window.alert('please verify your email')
-        
+
     }
-    if(response.status == 409){
+    if (response.status == 409) {
         window.alert('Email Alredy exists');
     }
 };

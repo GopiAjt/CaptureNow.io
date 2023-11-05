@@ -1,7 +1,7 @@
 const searchData = [
     'Portraits','Wedding Photography','Documentary','Sports','Fashion','Commercial','Street Photography','Event Photography',
     'Travel','Pet Photography','Product Photography','Real Estate','Food','Still Life Photography','Architecture','Abstract Photography','Landscape',
-    'Wildlife','Macro','Underwater','Astrophotography','Aerial Photography','Scientific'
+    'Wildlife','Macro','Astrophotography','Scientific','pre wedding','baby shower'
 ];
 // Get references to the search input, results container, and no results message
 const searchInput = document.getElementById('inputPre');
@@ -27,7 +27,7 @@ function performSearch() {
             const listItem = document.createElement('li');
             listItem.textContent = item;
             searchResults.appendChild(listItem);
-            if(filteredData.length == 23)
+            if(filteredData.length == 30)
             {
                 searchResults.innerHTML = "";
             }

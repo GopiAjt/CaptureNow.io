@@ -78,7 +78,7 @@ function createAndPopulateAlbums(albums) {
         // });
 
         // albumButton.appendChild(deleteButton);
-        // albumDescription.appendChild(albumName);
+        albumDescription.appendChild(albumName);
         // albumDescription.appendChild(albumButton);
 
         albumLink.appendChild(albumImage);
