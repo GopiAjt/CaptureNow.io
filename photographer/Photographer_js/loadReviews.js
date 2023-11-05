@@ -31,7 +31,7 @@ async function fetchPhotographerByEmail(data) {
     console.log(data);
 }
 
-// loadReviewsByEmail()
-// {
-//     let response = await fetch();
-// }
+loadReviewsByEmail()
+{
+    let response = await fetch();
+}
