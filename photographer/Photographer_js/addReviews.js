@@ -53,8 +53,13 @@ btn.addEventListener('click', async () => {
     });
 
     if (response.ok) {
-        window.alert('Added');
-        window.location.href = "./reviews.html"
+        window.location.href = "./reviews.html";
+        const snackbar = document.createElement("div");
+        snackbar.id = "snackbar";
+        snackbar.textContent = "Review Added";
+        document.body.appendChild(snackbar);
+        snackbar.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         console.log('Review Added Successfully');
     };
 });

@@ -28,3 +28,37 @@
 .stars i.active {
     color: #ff9c1a;
 }
+
+/* Style for the review container */
+.reviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style for each individual review */
+.review {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* Style for customer name */
+.review p:first-child {
+    font-weight: bold;
+}
+
+/* Style for comment */
+.review p:nth-child(2) {
+    font-style: italic;
+}
+
+/* Style for rating */
+.review p:nth-child(3) {
+    font-weight: bold;
+    color: #0077b6;
+    /* Change to your preferred color */
+}
