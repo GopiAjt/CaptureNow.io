@@ -54,37 +54,79 @@ async function loadReviewsByEmail(email) {
 };
 
 function populateReviews(data) {
-
     const reviewContainer = document.querySelector(".reviewContainer");
 
     // Clear any existing reviews in the container
     reviewContainer.innerHTML = "";
 
     data.forEach((review) => {
-        // Create an element to display the customer name
-        const customerNameElement = document.createElement("p");
-        customerNameElement.textContent = `Customer Name: ${review.customerName}`;
-
-        // Create an element to display the comment
-        const commentElement = document.createElement("p");
-        commentElement.textContent = `Comment: ${review.comment}`;
-
-        // Create an element to display the rating
-        const image = document.createElement("img");
-        image.src = "images/star.png";
-        const ratingElement = document.createElement("p");
-        ratingElement.textContent = `Rating: ${review.rating}`;
-
-        // Create a container for each review
+        // Create the main review container
         const reviewElement = document.createElement("div");
         reviewElement.classList.add("review");
 
-        // Append the elements to the review container
-        reviewElement.appendChild(customerNameElement);
-        reviewElement.appendChild(commentElement);
-        reviewElement.appendChild(ratingElement);
+        // Create the head container with flex layout and space-between justification
+        const head = document.createElement("div");
+        head.className = "head";
+        head.style.display = "flex";
+        head.style.justifyContent = "space-between";
 
-        // Append the review container to the main review container
+        // Create the ratingProfile container within head
+        const ratingProfile = document.createElement("div");
+        ratingProfile.className = "ratingProfile";
+        ratingProfile.style.display = "flex";
+        ratingProfile.style.alignItems = "flex-end";
+
+        // Create image and h5 elements for the ratingProfile
+        const profileImage = document.createElement("img");
+        profileImage.src = "/images/person.png";
+        profileImage.alt = "";
+        const profileName = document.createElement("h5");
+        profileName.textContent = review.customerName;
+
+        // Append image and h5 to ratingProfile
+        ratingProfile.appendChild(profileImage);
+        ratingProfile.appendChild(profileName);
+
+        // Create the ratingBody container within head
+        const ratingBody = document.createElement("div");
+        ratingBody.className = "ratingBody";
+        ratingBody.style.display = "flex";
+        ratingBody.style.alignItems = "center";
+
+        // Create image and h4 elements for the ratingBody
+        const starImage = document.createElement("img");
+        starImage.src = "/images/star.png";
+        starImage.style.width = "2.5vw";
+        starImage.style.height = "5vh";
+        const ratingValue = document.createElement("h5");
+        ratingValue.textContent = review.rating;
+
+        // Append starImage and h4 to ratingBody
+        ratingBody.appendChild(starImage);
+        ratingBody.appendChild(ratingValue);
+
+        // Append ratingProfile and ratingBody to head
+        head.appendChild(ratingProfile);
+        head.appendChild(ratingBody);
+
+        // Create the comment container
+        const commentElement = document.createElement("div");
+        commentElement.className = "comment";
+        commentElement.style.marginLeft = "5%";
+        commentElement.style.marginTop = "1%";
+
+        // Create a paragraph element for the comment text
+        const commentParagraph = document.createElement("p");
+        commentParagraph.textContent = review.comment;
+
+        // Append the paragraph to the comment container
+        commentElement.appendChild(commentParagraph);
+
+        // Append the head and comment containers to the main review container
+        reviewElement.appendChild(head);
+        reviewElement.appendChild(commentElement);
+
+        // Append the review container to the main review container in the HTML document
         reviewContainer.appendChild(reviewElement);
     });
 }
