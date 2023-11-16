@@ -37,7 +37,12 @@ function fetchPhotographers() {
                 cardImgDiv.classList.add('card-img');
 
                 var img = document.createElement('img');
-                img.src = 'data:image/jpeg;base64,' + photographer.profilePhoto;
+                if(photographer.profilePhoto == null)
+                {
+                    img.src = '/images/default_profile.png';
+                }else{
+                    img.src = 'data:image/jpeg;base64,' + photographer.profilePhoto;
+                }
                 img.classList.add('card-img-top');
                 img.alt = '...';
 

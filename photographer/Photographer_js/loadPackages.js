@@ -22,7 +22,7 @@ async function fetchPhotographerByEmail(data) {
     document.title = data.name;
 
     if (data.profilePhoto == null) {
-        img.src = '/images/profile.jpg';
+        img.src = '/images/default_profile.png';
         navImg.src = '/images/profile.jpg';
     }
     else {

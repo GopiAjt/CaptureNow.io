@@ -22,7 +22,7 @@ async function fetchPhotographerByEmail(data) {
     document.title = data.name;
 
     if (data.profilePhoto == null) {
-        img.src = '/images/profile.jpg';
+        img.src = '/images/default_profile.png';
         navImg.src = '/images/profile.jpg';
     }
     else {
@@ -78,10 +78,13 @@ function populateReviews(data) {
 
         // Create image and h5 elements for the ratingProfile
         const profileImage = document.createElement("img");
-        profileImage.src = "/images/person.png";
+        profileImage.src = "/images/default_profile.png";
         profileImage.alt = "";
+        profileImage.style.width = "3vw";
         const profileName = document.createElement("h5");
         profileName.textContent = review.customerName;
+        profileName.style.marginBottom = "0%"
+        profileName.style.marginLeft = "10px"
 
         // Append image and h5 to ratingProfile
         ratingProfile.appendChild(profileImage);
@@ -113,7 +116,7 @@ function populateReviews(data) {
         const commentElement = document.createElement("div");
         commentElement.className = "comment";
         commentElement.style.marginLeft = "5%";
-        commentElement.style.marginTop = "1%";
+        commentElement.style.marginTop = "3%";
 
         // Create a paragraph element for the comment text
         const commentParagraph = document.createElement("p");
