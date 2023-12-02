@@ -178,9 +178,8 @@ async function getPackagesByEmail(email) {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        console.log(response);
         let data = await response.json();
-        
+        console.log(data);
         
     } catch (error) {
         console.error('There was an error:', error);
