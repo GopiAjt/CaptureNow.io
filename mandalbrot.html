@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <title>Flower-Like Fractal Tree</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" style="height: 100px; width: 400px;">
+
+  </div>
+  <script>
+    let angle;
+    let petalCount = 6;
+
+    function setup() {
+      createCanvas(800, 600);
+      angle = PI / 4;
+    }
+
+    function draw() {
+      background(255);
+      translate(width / 2, height);
+
+      // Map mouseY to the range of the angle
+      angle = map(mouseY, 0, height, 0, PI * 2);
+
+      // Display the angle value
+      fill(0);
+      text("Angle: " + degrees(angle).toFixed(2), 10, -10);
+
+      colorfulFlower(200, petalCount);
+    }
+
+    function colorfulFlower(len, petals) {
+      // Add some randomness to the color
+      let r = 0;
+      let g = 0;
+      let b = 0;
+
+      strokeWeight(len / 10); // Adjust the factor to control the thickness
+      stroke(r, g, b);
+      line(0, 0, 0, -len);
+      translate(0, -len);
+
+      if (petals > 0) {
+        for (let i = 0; i < 2; i++) {
+          push();
+          rotate(angle * i);
+          colorfulFlower(len * 0.67, petals - 1);
+          pop();
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

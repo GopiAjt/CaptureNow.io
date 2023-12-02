@@ -37,10 +37,9 @@ function fetchPhotographers() {
                 cardImgDiv.classList.add('card-img');
 
                 var img = document.createElement('img');
-                if(photographer.profilePhoto == null)
-                {
+                if (photographer.profilePhoto == null) {
                     img.src = '/images/default_profile.png';
-                }else{
+                } else {
                     img.src = 'data:image/jpeg;base64,' + photographer.profilePhoto;
                 }
                 img.classList.add('card-img-top');
@@ -78,11 +77,11 @@ function fetchPhotographers() {
                 cardNameDiv.appendChild(tag);
                 cardInfoDiv.appendChild(cardNameDiv);
 
-                tag.addEventListener('click', function (event){
+                tag.addEventListener('click', function (event) {
                     event.preventDefault();
                     getByEmail(photographer.mailId);
                 });
-                
+
                 let cardExpireanceDiv = document.createElement('div');
                 cardExpireanceDiv.classList.add('card-experievce');
                 cardExpireanceDiv.textContent = photographer.experience;
@@ -113,12 +112,17 @@ function fetchPhotographers() {
 
                 var button = document.createElement('button');
                 button.type = 'button';
-                button.id = 'book';
+                button.id = 'bookMe';
                 button.classList.add('btn', 'btn-dark', 'btn-sm');
                 button.setAttribute('data-bs-toggle', 'modal');
                 button.setAttribute('data-bs-target', '#BookModal');
                 button.textContent = 'Book Me';
                 cardFooterDiv.appendChild(button);
+
+                button.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    getPackagesByEmail(photographer.mailId);
+                });
 
                 cardBodyDiv.appendChild(cardImgDiv);
                 cardBodyDiv.appendChild(cardInfoDiv);
@@ -155,6 +159,29 @@ async function getByEmail(email) {
         localStorage.setItem('photographerData', JSON.stringify(data));
 
         window.location.href = 'photographer/profile-album.html';
+    } catch (error) {
+        console.error('There was an error:', error);
+    }
+}
+
+async function getPackagesByEmail(email) {
+
+    try {
+        let response = await fetch(`http://localhost:8080/customer/getPackages?email=${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        console.log(response);
+        let data = await response.json();
+        
+        
     } catch (error) {
         console.error('There was an error:', error);
     }
