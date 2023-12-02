@@ -18,6 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flickity@2.2.2/dist/flickity.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 </head>
 
 <body>
@@ -161,8 +163,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h4>package</h4>
-
+                    <h4>packages</h4>
+                    <div class="carousel" data-flickity='{ "wrapAround": true }'>
+                        <!-- JavaScript will populate the carousel items here -->
+                    </div>
                     <div class="book-form">
                         <form class="row g-3">
                             <div class="col-md-10">
@@ -258,6 +262,8 @@
             localStorage.clear();
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flickity@2.2.2/dist/flickity.pkgd.min.js"></script>
 </body>
 
 </html>

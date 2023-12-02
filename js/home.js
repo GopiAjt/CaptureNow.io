@@ -121,7 +121,7 @@ function fetchPhotographers() {
 
                 button.addEventListener('click', function (event) {
                     event.preventDefault();
-                    getPackagesByEmail(photographer.mailId);
+                    getPackagesByEmail(photographer.mailId, photographer.name);
                 });
 
                 cardBodyDiv.appendChild(cardImgDiv);
@@ -164,7 +164,7 @@ async function getByEmail(email) {
     }
 }
 
-async function getPackagesByEmail(email) {
+async function getPackagesByEmail(email, name) {
 
     try {
         let response = await fetch(`http://localhost:8080/customer/getPackages?email=${email}`, {
@@ -180,8 +180,90 @@ async function getPackagesByEmail(email) {
         }
         let data = await response.json();
         console.log(data);
+        populateBookingModal(data,  name);
         
     } catch (error) {
         console.error('There was an error:', error);
     }
+}
+
+function populateBookingModal(packages, name) {
+    let photographerName = document.getElementById('photographerName');
+    photographerName.textContent = name;
+    photographerName.style.fontWeight = "bolder";
+
+    var carousel = document.querySelector('.carousel');
+    
+    packages.forEach(function (package, index) {
+      var cell = document.createElement("div");
+      cell.className = "carousel-cell mx-2";
+
+      var card = document.createElement("div");
+      card.className = "card bg-white rounded-lg overflow-hidden shadow-md p-4";
+      card.dataset.id = package.id; // Set the data-id attribute
+
+      var title = document.createElement("h5");
+      title.className = "card-title text-xl font-semibold mb-2";
+      title.textContent = package.packageName;
+
+      var description = document.createElement("p");
+      description.className = "card-text text-gray-600 mb-4";
+      description.innerHTML = addLineBreaks(package.description);
+
+      var eventRate = document.createElement("p");
+      eventRate.className = "card-text text-blue-600 mb-1";
+      eventRate.textContent = `Event Rate: ${package.eventRate}`;
+
+      var oneDayRate = document.createElement("p");
+      oneDayRate.className = "card-text text-blue-600 mb-1";
+      oneDayRate.textContent = `One Day Rate: ${package.oneDayRate}`;
+
+      var oneHourRate = document.createElement("p");
+      oneHourRate.className = "card-text text-blue-600 mb-1";
+      oneHourRate.textContent = `One Hour Rate: ${package.oneHourRate}`;
+
+      var videoRate = document.createElement("p");
+      videoRate.className = "card-text text-blue-600 mb-1";
+      videoRate.textContent = `Video Rate: ${package.videoRate}`;
+
+      card.appendChild(title);
+      card.appendChild(description);
+      card.appendChild(eventRate);
+      card.appendChild(oneDayRate);
+      card.appendChild(oneHourRate);
+      card.appendChild(videoRate);
+
+      cell.appendChild(card);
+      carousel.appendChild(cell);
+    });
+
+    // Initialize Flickity
+    var flkty = new Flickity('.carousel', {
+      wrapAround: true,
+      cellAlign: 'left',
+      contain: true,
+    });
+
+    // Add click event listener to the carousel
+    carousel.addEventListener('click', function (event) {
+      // Remove the highlight class from all cards
+      var cards = document.querySelectorAll('.card');
+      cards.forEach(function (card) {
+        card.classList.remove('highlighted');
+      });
+
+      // Check if the clicked element is a card
+      var card = event.target.closest('.card');
+      if (card) {
+        // Log the ID associated with the clicked card
+        console.log('Clicked Card ID:', card.dataset.id);
+
+        // Add the highlight class to the clicked card
+        card.classList.add('highlighted');
+      }
+    });
+}
+
+function addLineBreaks(text) {
+    return text.replace(/\n/g, '<br>');
 }
