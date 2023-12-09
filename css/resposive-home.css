@@ -1,0 +1,130 @@
+/* Default styles for all screen sizes */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Styles for desktop screens (1280x720 to 1920x1080) */
+@media only screen and (min-width: 1280px) {
+    #navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: rgb(255, 255, 0);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.237);
+        height: 10vh;
+        width: auto;
+    }
+
+    .icon {
+        width: 1.5vw;
+    }
+
+    #navbar .logo {
+        display: flex;
+    }
+
+    .logo a {
+        text-decoration: none;
+        color: black;
+    }
+
+    #navbar .search {
+        display: flex;
+    }
+
+    #navbar .buttons {
+        display: flex;
+    }
+
+    /* Add more styles for other elements as needed */
+}
+
+/* Styles for tablet screens (601x962 to 1280x800) */
+@media only screen and (min-width: 800px) {
+    #navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: rgb(255, 255, 0);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.237);
+        height: 10vh;
+        width: auto;
+    }
+
+    .search-input {
+        border: 0px solid #111d5e;
+        border-radius: 5px;
+        outline: none;
+        font-size: 1.8vmin;
+        color: rgb(0, 0, 0);
+        background: none;
+        width: 15vw;
+    }
+
+    #categories {
+        /* Example styles for tablet */
+        margin-top: 4vh;
+        height: 4vh;
+        align-items: center;
+        justify-content: space-around;
+        margin-left: 10vw;
+        margin-right: 10vw;
+        background-color: rgb(255, 255, 255);
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.105);
+        border-radius: 5px 5px;
+    }
+
+    #categories .fillter-tag {
+        font-size: 1px;
+    }
+
+    #categories a:hover {
+        /* Example styles for tablet */
+        transition: 0.1s;
+        font-size: 1.1rem;
+    }
+
+    /* Add more styles for other elements as needed */
+}
+
+/* Styles for mobile screens (360x640 to 414x896) */
+@media only screen and (max-width: 600px) {
+    #navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: rgb(255, 255, 0);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.237);
+        height: 10vh;
+        width: auto;
+    }
+    
+    .search-input {
+        border: 0px solid #111d5e;
+        border-radius: 5px;
+        outline: none;
+        font-size: 1.8vmin;
+        color: rgb(0, 0, 0);
+        background: none;
+        width: 15vw;
+    }
+
+    .profile-button {
+        /* Example styles for mobile */
+        margin-left: 20px;
+    }
+
+    /* Add more styles for other elements as needed */
+}

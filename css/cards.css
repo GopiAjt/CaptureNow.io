@@ -20,3 +20,24 @@
 .card.highlighted {
     border: 2px solid #3490dc;
 }
+
+.profile-button{
+    cursor: pointer;
+}
+/* Style the dropdown menu items */
+.dropdown-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change the dropdown menu item color on hover */
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu when the profile button is clicked */
+.show {
+    display: block;
+}

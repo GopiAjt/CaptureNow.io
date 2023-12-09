@@ -1,0 +1,84 @@
+/* Additional styles for autocomplete */
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+#autocompleteResults {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #000000;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: rgb(255, 255, 0);
+    display: none;
+    z-index: 1000; /* Set a high z-index value */
+}
+#autocompleteResultsPre{
+  position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #000000;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: rgb(255, 255, 0);
+    display: none;
+    z-index: 1000; /* Set a high z-index value */
+}
+#autocompleteResults ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#autocompleteResultsPre ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#autocompleteResults li {
+    padding: 8px;
+    cursor: pointer;
+    list-style: none;
+    transition: 1.3s;
+    margin-left: 1.5vw;
+}
+#autocompleteResultsPre li {
+  padding: 8px;
+  cursor: pointer;
+  list-style: none;
+  transition: 1.3s;
+  margin-left: 1.5vw;
+}
+#autocompleteResults li:hover {
+    background-color: rgb(255, 255, 255);
+}
+#autocompleteResultsPre li:hover {
+  background-color: rgb(255, 255, 255);
+}
+/* Style the scrollbar track */
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  height: 30px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+/* Style the scrollbar buttons */
+::-webkit-scrollbar-button {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 5px;
+}

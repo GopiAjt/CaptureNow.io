@@ -1,39 +1,71 @@
-const searchData = [
-    'Portraits','Wedding Photography','Documentary','Sports','Fashion','Commercial','Street Photography','Event Photography',
-    'Travel','Pet Photography','Product Photography','Real Estate','Food','Still Life Photography','Architecture','Abstract Photography','Landscape',
-    'Wildlife','Macro','Astrophotography','Scientific','pre wedding','baby shower'
+const searchInput = document.getElementById('inputLoc');
+const autocompleteResults = document.getElementById('autocompleteResults');
+
+const searchInputPre = document.getElementById('inputPre');
+const autocompleteResultsPre = document.getElementById('autocompleteResultsPre');
+
+// Add popular locations of India with a focus on photography industry activity
+const data = [
+  'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai',
+  'Kolkata', 'Ahmedabad', 'Pune', 'Jaipur', 'Lucknow',
+  'Goa', 'Varanasi', 'Udaipur', 'Agra', 'Jaipur',
+  'Chandigarh', 'Amritsar', 'Nagpur', 'Indore', 'Bhopal',
+  'Surat', 'Vadodara', 'Rajkot', 'Nashik', 'Thane'
+  // Add more locations as needed
 ];
-// Get references to the search input, results container, and no results message
-const searchInput = document.getElementById('inputPre');
-const searchResults = document.getElementById('searchResults');
-const noResultsMessage = document.getElementById('noResultsMessage');
 
-// Function to perform search and display results
-function performSearch() {
-    console.log('searching');
-    const searchTerm = searchInput.value.toLowerCase();
-    const filteredData = searchData.filter(item => item.toLowerCase().includes(searchTerm));
+const preparations = [
+  'wedding', 'pre wedding','Portraits','Documentary','Fashion','Commercial','Street','Event','Travel',
+  'Pet','Product','Real Estate','Food','Still Life','Architecture','Abstract','Landscape','Wildlife','Macro',
+  'Astrophotography','Scientific','Underwater'
+]
 
-    // Clear previous search results
-    searchResults.innerHTML = '';
+function updateResults(value, resultsContainer) {
+  resultsContainer.innerHTML = '';
 
-    if (filteredData.length === 0) {
-        // Display no results message if no matches found
-        noResultsMessage.style.display = 'block';
-    } else {
-        // Populate search results
-        noResultsMessage.style.display = 'none';
-        filteredData.forEach(item => {
-            const listItem = document.createElement('li');
-            listItem.textContent = item;
-            searchResults.appendChild(listItem);
-            if(filteredData.length == 30)
-            {
-                searchResults.innerHTML = "";
-            }
-        });
-    }
+  const dataSource = resultsContainer === autocompleteResults ? data : preparations;
+
+  const filteredData = dataSource.filter(item =>
+    item.toLowerCase().startsWith(value.toLowerCase())
+  );
+
+  filteredData.forEach(item => {
+    const listItem = document.createElement('button');
+    listItem.classList.add('dropdown-item');
+    listItem.textContent = item;
+    listItem.addEventListener('click', () => {
+      if (resultsContainer === autocompleteResults) {
+        searchInput.value = item;
+      } else if (resultsContainer === autocompleteResultsPre) {
+        searchInputPre.value = item;
+      }
+
+      resultsContainer.innerHTML = '';
+    });
+    resultsContainer.appendChild(listItem);
+  });
+
+  if (filteredData.length > 0) {
+    resultsContainer.style.display = 'block';
+  } else {
+    resultsContainer.style.display = 'none';
+  }
 }
 
-// Add event listener to the search input
-searchInput.addEventListener('keyup', performSearch);
+searchInput.addEventListener('input', function () {
+  updateResults(this.value, autocompleteResults);
+});
+
+searchInputPre.addEventListener('input', function () {
+  updateResults(this.value, autocompleteResultsPre);
+});
+
+document.addEventListener('click', function (event) {
+  if (!autocompleteResults.contains(event.target) && event.target !== searchInput) {
+    autocompleteResults.style.display = 'none';
+  }
+
+  if (!autocompleteResultsPre.contains(event.target) && event.target !== searchInputPre) {
+    autocompleteResultsPre.style.display = 'none';
+  }
+});

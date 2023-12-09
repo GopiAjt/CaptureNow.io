@@ -130,8 +130,11 @@
   width: 20vw;
 }
 
+.profile-button{
+  margin-left: 50px;
+}
 .modal-body {
-  margin-left: 5vw;
+  
 }
 
 .footer {
