@@ -1,45 +1,24 @@
+const applyFilterButton = document.getElementById('applyFilter');
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Function to fetch values when the Apply button is clicked
-    function fetchFilterValues() {
-        // Location
-        const locationOptions = document.getElementsByName('inlineRadioOptionsLocation');
-        let selectedLocation;
-        locationOptions.forEach(option => {
-            if (option.checked) {
-                selectedLocation = option.value;
-            }
-        });
+applyFilterButton.addEventListener('click', function () {
+    // Location
+    const locationOption = document.querySelector('input[name="inlineRadioOptionsLocation"]:checked').value;
 
-        // Maximum Distance
-        const maxDistance = document.getElementById('customRange').value;
+    // Maximum Distance
+    const maxDistance = document.getElementById('customRange').value;
 
-        // Sort By - Cost
-        const costOptions = document.getElementsByName('inlineRadioOptionsCost');
-        let selectedCostSort;
-        costOptions.forEach(option => {
-            if (option.checked) {
-                selectedCostSort = option.value;
-            }
-        });
+    // Sort By Cost
+    const sortByCostOption = document.querySelector('input[name="inlineRadioOptionsCost"]:checked').value;
 
-        // Sort By - Ratings
-        const ratingOptions = document.getElementsByName('inlineRadioOptionsRating');
-        let selectedRatingSort;
-        ratingOptions.forEach(option => {
-            if (option.checked) {
-                selectedRatingSort = option.value;
-            }
-        });
+    // Sort By Rating
+    const sortByRatingOption = document.querySelector('input[name="inlineRadioOptionsRating"]:checked').value;
 
-        // Log or use the values as needed
-        console.log('Location:', selectedLocation);
-        console.log('Maximum Distance:', maxDistance);
-        console.log('Sort By - Cost:', selectedCostSort);
-        console.log('Sort By - Ratings:', selectedRatingSort);
-    }
+    const filterData = {
+        location: locationOption,
+        maxDistance,
+        sortByCost: sortByCostOption,
+        sortByRating: sortByRatingOption,
+    };
 
-    // Add click event listener to the Apply button
-    const applyButton = document.querySelector('.btn-dark');
-    applyButton.addEventListener('click', fetchFilterValues);
+    console.log(filterData);
 });
