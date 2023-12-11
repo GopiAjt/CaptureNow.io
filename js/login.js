@@ -21,7 +21,7 @@ const loginUser = async(e) => {
             // Store the data in localStorage
         localStorage.setItem('user', JSON.stringify(data));
 
-        window.open('/home.html');
+        window.open('/sample-inner-page.html');
     }
     else
     {
