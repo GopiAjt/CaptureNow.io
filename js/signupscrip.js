@@ -28,6 +28,7 @@ const saveUser = async(e) => {
     e.preventDefault();
     let name = document.getElementById('inputName').value;
     let email = document.getElementById('inputEmail').value;
+    let phoneNo = document.getElementById('inputphone').value;
     emailGlobal = email;
     let pass = document.getElementById('inputPassword1').value;
     // let phno = document.getElementById('inputphone').value;
@@ -37,11 +38,12 @@ const saveUser = async(e) => {
     let options = {
         method: "POST",
         headers: {
-            "Content-type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             name: name,
             email: email,
+            phoneNo: phoneNo,
             password: pass
         })
     };
@@ -51,7 +53,7 @@ const saveUser = async(e) => {
         window.alert('Please Verify your Account');
         break;
     }
-    if(response.status == 409)
+    if(response.status == 400)
     {
         window.alert('Email Alredy Exists')
     }
