@@ -1,29 +1,34 @@
-.card-body{
+.card-body {
     display: flex;
     flex-direction: row;
     width: auto;
     justify-content: flex-start;
     align-items: center;
+    padding: 20px;
 }
-.card-fotter{
+
+.card-fotter {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px;
+    width: 100%;
 }
-.card-img{
+
+.card-img {
     width: auto;
     height: auto;
     max-width: 200px;
     margin-right: 20px;
 }
+
 .card.highlighted {
     border: 2px solid #3490dc;
 }
 
-.profile-button{
+.profile-button {
     cursor: pointer;
 }
+
 /* Style the dropdown menu items */
 .dropdown-menu a {
     color: black;
@@ -40,4 +45,54 @@
 /* Show the dropdown menu when the profile button is clicked */
 .show {
     display: block;
+}
+
+@media (max-width: 575px) {
+    .card {
+        align-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .card-body {
+        display: flex;
+        width: auto;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 25px;
+    }
+
+    .recommendations .ele {
+        margin-bottom: 2vh;
+        max-width: 350px;
+        width: 300px;
+        height: auto;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .card {
+        align-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-left: 30px;
+    }
+
+    .recommendations .ele {
+        margin-bottom: 2vh;
+        width: 100%;
+        height: auto;
+    }
 }
