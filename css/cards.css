@@ -71,6 +71,23 @@
         height: auto;
     }
 
+    #categories {
+        display: flex;
+        margin-top: 4vh;
+        height: 15vh;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 9vw;
+        margin-right: 9vw;
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgba(0, 0, 0, 0.106) 5px 5px 5px;
+        border-radius: 5px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: space-around;
+        padding: 10px;
+    }
+
 }
 
 @media (min-width: 768px) {

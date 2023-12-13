@@ -1,26 +1,24 @@
-const searchInput = document.getElementById('inputLoc');
+const searchInputLoc = document.getElementById('inputLoc');
 const autocompleteResults = document.getElementById('autocompleteResults');
 
 const searchInputPre = document.getElementById('inputPre');
 const autocompleteResultsPre = document.getElementById('autocompleteResultsPre');
 
-// Add popular locations of India with a focus on photography industry activity
 const data = [
   'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai',
   'Kolkata', 'Ahmedabad', 'Pune', 'Jaipur', 'Lucknow',
-  'Goa', 'Varanasi', 'Udaipur', 'Agra', 'Jaipur',
-  'Chandigarh', 'Amritsar', 'Nagpur', 'Indore', 'Bhopal',
-  'Surat', 'Vadodara', 'Rajkot', 'Nashik', 'Thane'
-  // Add more locations as needed
+  'Goa', 'Varanasi', 'Udaipur', 'Agra', 'Chandigarh',
+  'Amritsar', 'Nagpur', 'Indore', 'Bhopal', 'Surat',
+  'Vadodara', 'Rajkot', 'Nashik', 'Thane'
 ];
 
 const preparations = [
-  'wedding', 'pre wedding','Portraits','Documentary','Fashion','Commercial','Street','Event','Travel',
-  'Pet','Product','Real Estate','Food','Still Life','Architecture','Abstract','Landscape','Wildlife','Macro',
-  'Astrophotography','Scientific','Underwater'
-]
+  'wedding', 'pre wedding', 'Portraits', 'Documentary', 'Fashion', 'Commercial', 'Street', 'Event', 'Travel',
+  'Pet', 'Product', 'Real Estate', 'Food', 'Still Life', 'Architecture', 'Abstract', 'Landscape', 'Wildlife', 'Macro',
+  'Astrophotography', 'Scientific', 'Underwater'
+];
 
-function updateResults(value, resultsContainer) {
+function updateResults(value, resultsContainer, searchInput) {
   resultsContainer.innerHTML = '';
 
   const dataSource = resultsContainer === autocompleteResults ? data : preparations;
@@ -33,35 +31,36 @@ function updateResults(value, resultsContainer) {
     const listItem = document.createElement('button');
     listItem.classList.add('dropdown-item');
     listItem.textContent = item;
-    listItem.addEventListener('click', () => {
-      if (resultsContainer === autocompleteResults) {
-        searchInput.value = item;
-      } else if (resultsContainer === autocompleteResultsPre) {
-        searchInputPre.value = item;
-      }
 
+    listItem.setAttribute('role', 'option');
+    listItem.setAttribute('aria-selected', 'false');
+
+    listItem.addEventListener('click', () => {
+      searchInput.value = item;
       resultsContainer.innerHTML = '';
     });
+
     resultsContainer.appendChild(listItem);
   });
 
   if (filteredData.length > 0) {
     resultsContainer.style.display = 'block';
+    resultsContainer.setAttribute('role', 'listbox');
   } else {
     resultsContainer.style.display = 'none';
   }
 }
 
-searchInput.addEventListener('input', function () {
-  updateResults(this.value, autocompleteResults);
+searchInputLoc.addEventListener('input', function () {
+  updateResults(this.value, autocompleteResults, searchInputLoc);
 });
 
 searchInputPre.addEventListener('input', function () {
-  updateResults(this.value, autocompleteResultsPre);
+  updateResults(this.value, autocompleteResultsPre, searchInputPre);
 });
 
 document.addEventListener('click', function (event) {
-  if (!autocompleteResults.contains(event.target) && event.target !== searchInput) {
+  if (!autocompleteResults.contains(event.target) && event.target !== searchInputLoc) {
     autocompleteResults.style.display = 'none';
   }
 
