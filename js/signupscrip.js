@@ -28,9 +28,9 @@ const saveUser = async(e) => {
     e.preventDefault();
     let name = document.getElementById('inputName').value;
     let email = document.getElementById('inputEmail').value;
-    let phoneNo = document.getElementById('inputphone').value;
+    // let phoneNo = document.getElementById('inputphone').value;
     emailGlobal = email;
-    let pass = document.getElementById('inputPassword1').value;
+    let pass = document.getElementById('inputPassword').value;
     // let phno = document.getElementById('inputphone').value;
     // document.getElementById('signup-form').reset();
     // $('exampleModal').modal('toggle');

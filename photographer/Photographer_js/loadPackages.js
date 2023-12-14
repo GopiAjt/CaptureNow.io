@@ -35,7 +35,7 @@ async function fetchPhotographerByEmail(data) {
 function LoadPackage(packages) {
     console.log('update package');
 
-    let packageContainer = document.getElementsByClassName("container")[0];
+    let packageContainer = document.getElementsByClassName("package-container")[0];
     packageContainer.innerHTML = ""; // Clear existing content
 
     if (packages.length === 0) {
