@@ -35,7 +35,22 @@
 body {
   font-family: var(--font-default);
   color: var(--color-default);
+  background: url('/images/background-img-1.jpg') center/cover fixed no-repeat;
+
+  /* Make the background image 50% of the viewport width */
+  background-size: 60%;
+
+   /* Shift the background image 20% to the left */
+   background-position:1% center;
+
+  /* Additional properties for troubleshooting */
+  height: 100vh; /* Ensure the body takes up the full viewport height */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
 }
+
+
+
 
 a {
   color: var(--color-primary);
