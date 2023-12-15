@@ -148,7 +148,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Old password</label>
-									<input type="password" class="form-control">
+									<input type="password" class="form-control" id="oldPassword">
 								</div>
 							</div>
 						</div>
@@ -156,19 +156,26 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>New password</label>
-									<input type="password" class="form-control">
+									<input type="password" class="form-control" id="newPassword1">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Confirm new password</label>
-									<input type="password" class="form-control">
+									<input type="password" class="form-control" id="newPassword2">
+									<span><div style="width: 10px; height: 10px; border-radius: 10px; color: red;">password</div></span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<p>otp will be recieved on your email id</p>
+									<button class="btn btn-dark" id="sendOtp">Send Otp</button>
+									<input type="password" class="form-control" id="otp" placeholder="Enter otp">
 								</div>
 							</div>
 						</div>
 						<div>
-							<button class="btn btn-primary">Update</button>
-							<button class="btn btn-light">Cancel</button>
+							<button class="btn btn-dark" id="updatePassword">Update</button>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="security-tab">

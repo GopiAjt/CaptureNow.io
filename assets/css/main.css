@@ -232,9 +232,11 @@ section {
     padding: 100px 0;
   }
   .icon {
-    width: 5vw;
+    width: 4vw;
   }
-  
+  #categories p {
+    font-size: 10px;
+  }
 }
 
 .header.sticked {
@@ -564,6 +566,7 @@ section {
   text-decoration: none;
   color: black;
   font-size: 1rem;
+  padding: 15px;
 }
 
 #categories a:hover {
