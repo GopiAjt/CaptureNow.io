@@ -13,7 +13,7 @@ async function details() {
     let token = data.authToken;
 
     let response = await fetch('http://localhost:8080/photographer/updateBasicInfo', {
-        method: "PUT",
+        method: "POST",
         headers: {
             'Content-type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -29,7 +29,7 @@ async function details() {
             experience: experience,
             aboutMe: description,
         })
-    })
+    });
     console.log(response);
     if (response.status == 200) {
         data.name = name;
@@ -53,10 +53,24 @@ updateDetails.addEventListener('click', details);
 
 // Event listener for "Send OTP" button
 const sendOtpButton = document.getElementById('sendOtp');
-sendOtpButton.addEventListener('click', function () {
+sendOtpButton.addEventListener('click', async function () {
+
+    let token = data.authToken;
+    let emailId = data.email;
+    console.log(token);
     // Implement logic to send OTP via emails
-    // You can use fetch or any other method here
+    let response = await fetch('http://localhost:8080/photographer/resetPasswordOtp?emailId='+ emailId, {
+        method: "POST",
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    });
     console.log('Sending OTP...');
+    if (response.ok) {
+        window.alert('Otp sent.!');
+    }
+    console.log(response);
 });
 
 // Event listener for "Update" button
@@ -65,32 +79,39 @@ updatePasswordButton.addEventListener('click', function () {
 
     const oldPasswordInput = document.getElementById('oldPassword');
     const newPassword1Input = document.getElementById('newPassword1');
-    const newPassword2Input = document.getElementById('newPassword2');
     const otpInput = document.getElementById('otp');
     // Validate form inputs
     if (!validateForm()) {
         return;
     }
-
+    let token = data.authToken;
     // Fetch API to reset password
     const resetData = {
+        emailId: data.email,
         oldPassword: oldPasswordInput.value,
         newPassword: newPassword1Input.value,
         otp: otpInput.value,
     };
 
-    fetch('your_reset_password_api_endpoint', {
+    fetch('http://localhost:8080/photographer/resetPassword', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(resetData),
     })
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to reset password');
+            if (response.ok) {
+                window.alert('Password Reset Successful.!');
             }
-            return response.json();
+            if(response.status == 400){
+                window.alert('Invalid Otp');
+            }
+            if (response.status == 403) {
+                window.alert('Invalid Password');
+            }
+            // return response.json();
         })
         .then(data => {
             // Password reset successful, handle accordingly (e.g., show success message)
@@ -114,11 +135,13 @@ function validateForm() {
         alert('Please fill in all fields.');
         return false;
     }
-
+    let invalid = document.getElementById('newPassword2');
     // Check if the new passwords match
     if (newPassword1 !== newPassword2) {
-        alert('New passwords do not match.');
+        invalid.style.borderColor = "red";
         return false;
+    }else{
+        invalid.style.borderColor = "blue";
     }
 
     // Add more validation logic as needed
