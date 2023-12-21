@@ -57,9 +57,9 @@ sendOtpButton.addEventListener('click', async function () {
 
     let token = data.authToken;
     let emailId = data.email;
-    console.log(token);
+    sendOtpButton.innerHTML = "Sending..";
     // Implement logic to send OTP via emails
-    let response = await fetch('http://localhost:8080/photographer/resetPasswordOtp?emailId='+ emailId, {
+    let response = await fetch('http://localhost:8080/photographer/resetPasswordOtp?emailId=' + emailId, {
         method: "POST",
         headers: {
             'Content-type': 'application/json',
@@ -68,12 +68,13 @@ sendOtpButton.addEventListener('click', async function () {
     });
     console.log('Sending OTP...');
     if (response.ok) {
+        sendOtpButton.innerHTML = "Send Otp";
         window.alert('Otp sent.!');
     }
     console.log(response);
 });
 
-// Event listener for "Update" button
+// Event listener for "password update" button
 const updatePasswordButton = document.getElementById('updatePassword');
 updatePasswordButton.addEventListener('click', function () {
 
@@ -105,7 +106,7 @@ updatePasswordButton.addEventListener('click', function () {
             if (response.ok) {
                 window.alert('Password Reset Successful.!');
             }
-            if(response.status == 400){
+            if (response.status == 400) {
                 window.alert('Invalid Otp');
             }
             if (response.status == 403) {
@@ -140,7 +141,7 @@ function validateForm() {
     if (newPassword1 !== newPassword2) {
         invalid.style.borderColor = "red";
         return false;
-    }else{
+    } else {
         invalid.style.borderColor = "blue";
     }
 

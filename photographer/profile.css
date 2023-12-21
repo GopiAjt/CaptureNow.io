@@ -7,22 +7,87 @@
   font-family: 'Poppins', sans-serif;
   /* font-family: 'Roboto Mono', monospace; */
   /* font-family: 'Roboto Slab', serif; */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+}
+
+body {
+  background-color: yellow;
+}
+
+#navbar .logo {
+  display: flex;
+}
+
+.logo a {
+  text-decoration: none;
+  color: black;
+}
+
+#navbar .search {
+  display: flex;
+}
+
+#navbar .buttons {
+  display: flex;
+}
+
+.search-box-loc {
+  position: relative;
+  display: flex;
+  width: 15vw;
+  padding: 5px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-right: none;
+  border-top-right-radius: none;
+  border-bottom-right-radius: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  outline: none;
+  color: rgb(0, 0, 0);
+  background: none;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  width: 20vw;
+  padding: 5px;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: none;
+  border-bottom-left-radius: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  background: none;
+}
+
+.search-input {
+  border: 0px solid #111d5e;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1.8vmin;
+  color: rgb(0, 0, 0);
+  background: none;
+  width: 20vw;
 }
 
 .profile-header {
-  margin-top: 25vh;
+  margin-top: 10vh;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.071);
-  margin-left: 20vw;
-  margin-right: 20vw;
+  margin-left: 15vw;
+  margin-right: 15vw;
   display: flex;
   align-items: center;
   margin-bottom: 5vh;
   border-radius: 10px;
-  padding: 20px;
+  padding: 5px;
+  max-width: 100%;
 }
 
 .profile-img {
@@ -37,11 +102,12 @@
   height: 200px;
   width: 200px;
   border-radius: 100%;
+  margin-left: 1vw;
 }
 
 .profile-overview {
   /* background-color: azure; */
-  padding-left: 10vw;
+  padding-left: 8vw;
 }
 
 .profile-menu {
@@ -54,22 +120,33 @@
   background-color: white;
 }
 
-.album-container {
+.prof-ele{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
 }
 
-.profile-album {
+/* .profile-album {
   margin-left: 20vw;
   margin-right: 20vw;
-  height: 100vh;
-  width: 50vw;
   display: flex;
-  align-items: center;
   justify-content: center;
+  height: 700px;
+  width: 50vw;
+  align-items: flex-start;
+} */
+#hr-line{
+  margin-left: 20vw; 
+  margin-right: 20vw; 
+  top: 0%; 
+  position: sticky; 
+  margin-bottom: 0px; 
+  height: 2px; 
+  background-color: black;
 }
-
 .albums a {
   text-decoration: none;
   color: black;
@@ -77,9 +154,8 @@
   align-items: center;
   padding: 5px 17px;
   font-weight: bold;
-  border-radius: 7px;
+  border-radius:0px 0px 7px 7px;
   transition-delay: 0.3s;
-  opacity: 0.7;
 }
 
 .packages a {
@@ -89,9 +165,8 @@
   align-items: center;
   font-weight: bold;
   padding: 5px 17px;
-  border-radius: 7px;
+  border-radius:0px 0px 7px 7px;
   transition-delay: 0.3s;
-  opacity: 0.7;
 }
 
 .equipments a {
@@ -101,121 +176,207 @@
   align-items: center;
   font-weight: bold;
   padding: 5px 17px;
-  border-radius: 7px;
-  transition-delay: 0.3;
-  opacity: 0.7;
+  border-radius:0px 0px 7px 7px;
+  transition-delay: 0.3s;
 }
 
-.albums a:hover {
-  opacity: 0.9;
-  /* background-color:rgb(215, 215, 83); */
+.reviews a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding: 5px 17px;
+  border-radius:0px 0px 7px 7px;
+  transition-delay: 0.3s;
 }
 
-.packages a:hover {
-  opacity: 0.9;
-  /* background-color:rgb(215, 215, 83); */
-}
-
-.equipments a:hover {
-  opacity: 0.9;
-  /* background-color:rgb(215, 215, 83); */
-}
-
-#fav {
+#fav-photo {
   background: none;
   border: none;
   border-style: none;
-  font-size: 2em;
+}
+
+.icon {
+  width: 1.5vw;
 }
 
 /* packages */
 .package-container {
   margin-top: 5vh;
-  margin-left: 20vw;
-  margin-right: 20vw;
+  margin-left: 10vw;
+  margin-right: 10vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   justify-content: space-evenly;
-  max-width: 100%;
 }
 
 .package-content {
-  height: 30vh;
-  width: 50vw;
+  height: auto;
+  width: 55vw;
   background-color: rgb(255, 255, 255);
   margin-top: 5vh;
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.189);
+  border-radius: 10px;
 }
 
 .packege-foot {
   display: flex;
   justify-content: space-between;
+  background-color: #e3f7059a;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-#addReview {
+
+
+
+
+/* add album */
+.preview-image {
+  width: 350px;
+  height: 200px;
+  object-fit: cover;
+  margin: 5px;
+}
+
+#previewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#previewEquipContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* add package */
+#package-type {
+  display: flex;
+  justify-content: space-between;
+}
+
+#addPackage {
+  margin: 0%;
+  padding: 0%;
+}
+
+#rates {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Album */
+.album-container {
+  margin-left: 20vw;
+  margin-right: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 10vh;
+  flex-wrap: wrap;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 400px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.333);
+  border-radius: 2%;
+}
+
+div.gallery:hover {
+  border: 2px solid #e3f705;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 2% 2% 0% 0%;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* CSS for the modal */
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 150px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  width: auto;
+  max-width: 700px;
+  height: auto;
+  margin: auto;
+  display: block;
+}
+.modal-content.portrait img {
   max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: auto;
 }
 
-#description {
-  width: 50vw;
+.close {
+  color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-@media(max-width:600px) {
-  .logo a {
-    display: none;
-  }
-
-  .profile-header {
-    margin-top: 20vh;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.071);
-    display: flex;
-    align-items: center;
-    margin-bottom: 5vh;
-    border-radius: 10px;
-    flex-direction: column;
-    margin-left: 5vw;
-    margin-right: 5vw;
-  }
-
-  .search-input {
-    /* display: none; */
-    font-display: unset;
-  }
-
-  hr {
-    top: 0%;
-    position: sticky;
-  }
-
-  .icon {
-    width: 5vw;
-  }
-
-  .albums a {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-
-  .packages a {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-
-  .profile-album {
-    /* margin-left: 20vw;
-    margin-right: 20vw; */
-    height: 30vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10%;
-  }
+.loding-content{
+  width: 500px;
+  height: 500px;
+  margin-left: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* Adjust the size of the GIF animation to fit the modal */
+.loding-content iframe {
+ width: 50vw;
+}
+
+.show-modal {
+  display: block;
+}
+
+/* search bar */
+
+/* .suggestions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.suggestions-list li {
+  cursor: pointer;
+} */
